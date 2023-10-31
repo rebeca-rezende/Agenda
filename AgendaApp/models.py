@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Agenda(models.Model):
 
-    estados_civis = [
+    ESTADOS_CIVIS = [
         ('S', 'Solteiro'),
         ('C','Casado'),
         ('D','Divorciado'),
@@ -21,6 +21,7 @@ class Agenda(models.Model):
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=50)
+    estado_civil = models.CharField(max_length=1, choices=ESTADOS_CIVIS, null=True)
 
 
 
