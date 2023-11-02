@@ -23,7 +23,8 @@ class Agenda(models.Model):
         ('D','Divorciado'),
         ('V','Viúvo')
     ]
-    
+
+ 
     
 
     nome = models.CharField(max_length=200)
@@ -44,3 +45,21 @@ class Agenda(models.Model):
     def __str__ (self):
         return self.nome
 
+class Telefone(models.Model):
+
+    TIPOS_TELEFONE = [
+        ('RES', 'Residencial'),
+        ('COM', 'Comercial'),
+        ('REC', 'Recado'),
+        ('CEL', 'Celular')
+    ]
+
+    contato = models.ForeignKey(Agenda, on_delete=models.CASCADE)
+    ddd = models.IntegerField()
+    numero = models.CharField(max_length=10) 
+    tipo = models.CharField(max_length=3, choices=TIPOS_TELEFONE)
+    IsWhatsapp = models.BooleanField(verbose_name="Tem Whatsapp? ")
+    
+    
+    def __str__ (self):
+        return f'({self.ddd}) {self.numero}'
